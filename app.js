@@ -1,7 +1,9 @@
 import express from 'express';
-const { PrismaClient } = require('@prisma/client');
-const cors = require('cors');
-require('dotenv').config();
+import { PrismaClient } from '@prisma/client';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const prisma = new PrismaClient();
@@ -11,8 +13,9 @@ app.use(cors({
     origin: ['http://localhost:4321', 'https://usuarios-honda.netlify.app'],
     methods: ['GET', 'POST'],
     credentials: true, 
-  }));
-  app.use(express.json());
+}));
+app.use(express.json());
+
 // Endpoint para obtener todos los usuarios
 app.get('/api/users', async (req, res) => {
   try {
